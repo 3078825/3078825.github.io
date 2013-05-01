@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>ngx_image_thumb by 3078825</title>
+
+    <link rel="stylesheet" href="/ngx_image_thumb/stylesheets/styles.css">
+    <link rel="stylesheet" href="/ngx_image_thumb/stylesheets/pygment_trac.css">
+    <script src="/ngx_image_thumb/javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>ngx_image_thumb</h1>
+        <p>Nginx Image Thumbnail Module</p>
+        <p class="view"><a href="https://github.com/3078825/ngx_image_thumb">View the Project on GitHub <small>3078825/ngx_image_thumb</small></a></p>
+        <ul>
+          <li><a href="https://github.com/3078825/ngx_image_thumb/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/3078825/ngx_image_thumb/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/3078825/ngx_image_thumb">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Nginx Image 缩略图 模块</h1>
+
+<h5>QQ:3078825</h5>
+
+<h5>邮箱:<a href="mailto:3078825@qq.com">3078825@qq.com</a>
+</h5>
+
+<h5>网址:<a href="http://www.oupula.org">http://www.oupula.org</a>
+</h5>
+
+<h5>Readme for english : <a href="https://github.com/3078825/nginx-image/blob/master/README_EN.md">https://github.com/3078825/nginx-image/blob/master/README_EN.md</a>
+</h5>
+
+<h6>My english so bad , you know.</h6>
+
+<h3>模块同时支持 Nginx 和 tengine</h3>
+
+<ul>
+<li>本nginx模块主要功能是对请求的图片进行缩略/水印处理，支持文字水印和图片水印。</li>
+<li>支持自定义字体，文字大小，水印透明度，水印位置。</li>
+<li>判断原图是否是否大于指定尺寸才处理。
+....等等</li>
+</ul><h2>编译方法</h2>
+
+<p>编译前请确认您的系统已经安装了libcurl-dev  libgd2-dev  libpcre-dev 依赖库</p>
+
+<h3>Debian / Ubuntu 系统举例</h3>
+
+<div class="highlight"><pre><span class="c"># 如果你没有安装GCC相关环境才需要执行</span>
+<span class="nv">$ </span>sudo apt-get install build-essential m4 autoconf automake make 
+<span class="nv">$ </span>sudo apt-get install libgd2-noxpm-dev libcurl4-openssl-dev libpcre3-dev
+</pre></div>
+
+<h3>CentOS /RedHat / Fedora</h3>
+
+<div class="highlight"><pre><span class="c"># 请确保已经安装了gcc automake autoconf m4 </span>
+<span class="nv">$ </span>sudo yum install gd-devel pcre-devel libcurl-devel 
+</pre></div>
+
+<h3>FreeBSD / NetBSD / OpenBSD</h3>
+
+<pre><code># 不多说了，自己用port 把libcurl-dev libgd2-dev libpcre-dev 装上吧
+# 编译前请确保已经安装gcc automake autoconf m4 
+</code></pre>
+
+<h3>Windows</h3>
+
+<pre><code># 也支持的，不过要修改的代码太多了，包括Nginx本身，用VC++来编译
+# 嫌麻烦可以用cygwin来编译。还是不建议你这么做了，用Unix/Linux操作系统吧。
+</code></pre>
+
+<h3>下载nginx / tengine 源代码</h3>
+
+<h4>然后下载本模块代码，并放在nginx源代码目录下</h4>
+
+<h4>选Nginx还是Tengine,您自己看,两者选其一</h4>
+
+<div class="highlight"><pre><span class="c"># 下载Tengine</span>
+<span class="nv">$ </span>wget http://tengine.taobao.org/download/tengine-1.4.5.tar.gz
+<span class="nv">$ </span>tar -zxvf tengine-1.4.5.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>tengine-1.4.5
+</pre></div>
+
+<div class="highlight"><pre><span class="c"># 下载Nginx</span>
+<span class="nv">$ </span>wget http://nginx.org/download/nginx-1.4.0.tar.gz
+<span class="nv">$ </span>tar -zxvf nginx-1.4.0.tar.gz
+<span class="nv">$ </span><span class="nb">cd </span>nginx-1.4.0
+</pre></div>
+
+<div class="highlight"><pre><span class="nv">$ </span>wget https://github.com/3078825/nginx-image/archive/master.zip
+<span class="nv">$ </span>unzip master.zip
+<span class="nv">$ </span>./configure --add-module<span class="o">=</span>./nginx-image-master
+<span class="nv">$ </span>make
+<span class="nv">$ </span>sudo make install 
+</pre></div>
+
+<h2>配置方法</h2>
+
+<p>打开 <code>nginx.conf</code> </p>
+
+<div class="highlight"><pre>vim /etc/nginx/nginx.conf 
+<span class="c"># 该路径为默认路径，如果不在此处，自己找一下</span>
+</pre></div>
+
+<p>在</p>
+
+<div class="highlight"><pre><span class="nb">location</span> / {
+   <span class="nb">root</span> html;
+   <span class="c">#添加以下配置</span>
+   <span class="nb">image</span> <span class="k">on</span>;
+   <span class="nb">image_output</span> <span class="k">on</span>;
+<span class="err">}</span>
+</pre></div>
+
+<p>或者指定目录开启 </p>
+
+<div class="highlight"><pre><span class="nb">location</span> <span class="sx">/upload</span> {
+   <span class="nb">root</span> html; 
+   <span class="nb">image</span> <span class="k">on</span>;
+   <span class="nb">image_output</span> <span class="k">on</span>;
+<span class="err">}</span>
+</pre></div>
+
+<h2>其他参数说明：</h2>
+
+<div class="highlight"><pre><span class="nb">image</span> <span class="k">on</span><span class="sx">/off</span> 是否开启缩略图功能,默认关闭
+
+<span class="nb">image_backend</span> <span class="k">on</span><span class="sx">/off</span> 是否开启镜像服务，当开启该功能时，请求目录不存在的图片（判断原图），将自动从镜像服务器地址下载原图
+
+<span class="nb">image_backend_server</span> 镜像服务器地址
+
+<span class="nb">image_output</span> <span class="k">on</span><span class="sx">/off</span> 是否不生成图片而直接处理后输出 默认off
+
+<span class="nb">image_jpeg_quality</span> <span class="m">75</span> 生成JPEG图片的质量 默认值75
+
+<span class="nb">image_water</span> <span class="k">on</span><span class="sx">/off</span> 是否开启水印功能
+
+<span class="nb">image_water_type</span> <span class="m">0</span>/1 水印类型 <span class="m">0</span>:图片水印 <span class="m">1</span>:文字水印
+
+<span class="nb">image_water_min</span> <span class="m">300</span> <span class="m">300</span> 图片宽度 <span class="m">300</span> 高度 <span class="m">300</span> 的情况才添加水印
+
+<span class="nb">image_water_pos</span> <span class="m">0</span>-9 水印位置 默认值9 <span class="m">0</span>为随机位置,1为顶端居左,2为顶端居中,3为顶端居右,4为中部居左,5为中部居中,6为中部居右,7为底端居左,8为底端居中,9为底端居右
+
+<span class="nb">image_water_file</span> 水印文件(jpg/png/gif),绝对路径或者相对路径的水印图片
+
+<span class="nb">image_water_transparent</span> 水印透明度,默认20
+
+<span class="nb">image_water_text</span> 水印文字 <span class="s2">"Power By Vampire"</span>
+
+<span class="nb">image_water_font_size</span> 水印大小 默认 <span class="m">5</span>
+
+<span class="nb">image_water_font</span> 文字水印字体文件路径
+
+<span class="nb">image_water_color</span> 水印文字颜色,默认 #000000
+</pre></div>
+
+<h2>调用说明</h2>
+
+<p>这里假设你的nginx 访问地址为 <code>http://127.0.0.1/</code></p>
+
+<p>并在nginx网站根目录存在一个 <code>test.jpg</code> 的图片</p>
+
+<p>通过访问 </p>
+
+<p><code>http://127.0.0.1/test.jpg!c300x200.jpg</code> 将会 生成/输出 <code>test.jpg</code> <strong>300x200</strong> 的缩略图</p>
+
+<p>其中 <strong>c</strong> 是生成图片缩略图的参数， <strong>300</strong> 是生成缩略图的 <strong>宽度</strong>      <strong>200</strong> 是生成缩略图的 <strong>高度</strong> </p>
+
+<p>一共可以生成**四**种不同类型的缩略图。</p>
+
+<p>支持 jpeg / png / gif (Gif生成后变成静态图片)</p>
+
+<p><strong>C</strong> 参数按请求宽高比例从图片高度 <strong>10%</strong> 处开始截取图片，然后缩放/放大到指定尺寸（ <strong>图片缩略图大小等于请求的宽高</strong> ）</p>
+
+<p><strong>M</strong> 参数按请求宽高比例居中截图图片，然后缩放/放大到指定尺寸（ <strong>图片缩略图大小等于请求的宽高</strong> ）</p>
+
+<p><strong>T</strong> 参数按请求宽高比例按比例缩放/放大到指定尺寸（ <strong>图片缩略图大小可能小于请求的宽高</strong> )</p>
+
+<p><strong>W</strong> 参数按请求宽高比例缩放/放大到指定尺寸，空白处填充白色背景颜色（ <strong>图片缩略图大小等于请求的宽高</strong> ）</p>
+
+<h2>调用举例</h2>
+
+<ul>
+<li><p><a href="http://127.0.0.1/test.jpg!c300x300.jpg">http://127.0.0.1/test.jpg!c300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.jpg!t300x300.jpg">http://127.0.0.1/test.jpg!t300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.jpg!m300x300.jpg">http://127.0.0.1/test.jpg!m300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.jpg!w300x300.jpg">http://127.0.0.1/test.jpg!w300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.c300x300.jpg">http://127.0.0.1/test.c300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.t300x300.jpg">http://127.0.0.1/test.t300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.m300x300.jpg">http://127.0.0.1/test.m300x300.jpg</a></p></li>
+<li><p><a href="http://127.0.0.1/test.w300x300.jpg">http://127.0.0.1/test.w300x300.jpg</a></p></li>
+</ul>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/3078825">3078825</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
