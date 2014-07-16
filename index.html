@@ -1,118 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>ngx_image_thumb 图片自动生成缩略图模块</title>
 
-    <link rel="stylesheet" href="/ngx_image_thumb/stylesheets/styles.css">
-    <link rel="stylesheet" href="/ngx_image_thumb/stylesheets/pygment_trac.css">
-    <script src="/ngx_image_thumb/javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>3078825.github.io by 3078825</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>ngx_image_thumb</h1>
-        <p>Nginx Image Thumbnail Module</p>
-        <p class="view"><a href="http://www.oupula.org">View My Blog</a></p>
-        <ul>
-          <li><a href="https://github.com/3078825/ngx_image_thumb/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/3078825/ngx_image_thumb/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/3078825/ngx_image_thumb">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Nginx Image 缩略图 模块</h1>
 
+    <header>
+      <div class="container">
+        <h1>3078825.github.io</h1>
+        <h2>ngx_image_thumb 图片自动生成缩略图模块</h2>
 
-<h5>邮箱:<a href="mailto:oopul@msn.com">oopul@msn.com</a>
+        <section id="downloads">
+          <a href="https://github.com/3078825" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="nginx-image-%E7%BC%A9%E7%95%A5%E5%9B%BE-%E6%A8%A1%E5%9D%97" class="anchor" href="#nginx-image-%E7%BC%A9%E7%95%A5%E5%9B%BE-%E6%A8%A1%E5%9D%97"><span class="octicon octicon-link"></span></a>Nginx Image 缩略图 模块</h1>
+
+<h5>
+<a name="%E9%82%AE%E7%AE%B1oopulmsncom" class="anchor" href="#%E9%82%AE%E7%AE%B1oopulmsncom"><span class="octicon octicon-link"></span></a>邮箱:<a href="mailto:oopul@msn.com">oopul@msn.com</a>
 </h5>
 
-<h5>网址:<a href="http://www.oupula.org">http://www.oupula.org</a>
+<h5>
+<a name="%E7%BD%91%E5%9D%80httpwwwoupulaorg" class="anchor" href="#%E7%BD%91%E5%9D%80httpwwwoupulaorg"><span class="octicon octicon-link"></span></a>网址:<a href="http://www.oupula.org">http://www.oupula.org</a>
 </h5>
 
-<h5>Readme for english : <a href="https://github.com/3078825/nginx-image/blob/master/README_EN.md">https://github.com/3078825/nginx-image/blob/master/README_EN.md</a>
+<h5>
+<a name="readme-for-english--httpsgithubcom3078825nginx-imageblobmasterreadme_enmd" class="anchor" href="#readme-for-english--httpsgithubcom3078825nginx-imageblobmasterreadme_enmd"><span class="octicon octicon-link"></span></a>Readme for english : <a href="https://github.com/3078825/nginx-image/blob/master/README_EN.md">https://github.com/3078825/nginx-image/blob/master/README_EN.md</a>
 </h5>
 
-<h6>My english so bad , you know.</h6>
+<h6>
+<a name="my-english-so-bad--you-know" class="anchor" href="#my-english-so-bad--you-know"><span class="octicon octicon-link"></span></a>My english so bad , you know.</h6>
 
-<h3>模块同时支持 Nginx 和 tengine</h3>
+<h3>
+<a name="%E6%A8%A1%E5%9D%97%E5%90%8C%E6%97%B6%E6%94%AF%E6%8C%81-nginx-%E5%92%8C-tengine" class="anchor" href="#%E6%A8%A1%E5%9D%97%E5%90%8C%E6%97%B6%E6%94%AF%E6%8C%81-nginx-%E5%92%8C-tengine"><span class="octicon octicon-link"></span></a>模块同时支持 Nginx 和 tengine</h3>
 
 <ul>
 <li>本nginx模块主要功能是对请求的图片进行缩略/水印处理，支持文字水印和图片水印。</li>
 <li>支持自定义字体，文字大小，水印透明度，水印位置。</li>
 <li>判断原图是否是否大于指定尺寸才处理。
 ....等等</li>
-</ul><h2>编译方法</h2>
+</ul><h2>
+<a name="%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95" class="anchor" href="#%E7%BC%96%E8%AF%91%E6%96%B9%E6%B3%95"><span class="octicon octicon-link"></span></a>编译方法</h2>
 
 <p>编译前请确认您的系统已经安装了libcurl-dev  libgd2-dev  libpcre-dev 依赖库</p>
 
-<h3>Debian / Ubuntu 系统举例</h3>
+<h3>
+<a name="debian--ubuntu-%E7%B3%BB%E7%BB%9F%E4%B8%BE%E4%BE%8B" class="anchor" href="#debian--ubuntu-%E7%B3%BB%E7%BB%9F%E4%B8%BE%E4%BE%8B"><span class="octicon octicon-link"></span></a>Debian / Ubuntu 系统举例</h3>
 
-<div class="highlight"><pre><span class="c"># 如果你没有安装GCC相关环境才需要执行</span>
+<div class="highlight highlight-bash"><pre><span class="c"># 如果你没有安装GCC相关环境才需要执行</span>
 <span class="nv">$ </span>sudo apt-get install build-essential m4 autoconf automake make 
 <span class="nv">$ </span>sudo apt-get install libgd2-noxpm-dev libcurl4-openssl-dev libpcre3-dev
 </pre></div>
 
-<h3>CentOS /RedHat / Fedora</h3>
+<h3>
+<a name="centos-redhat--fedora" class="anchor" href="#centos-redhat--fedora"><span class="octicon octicon-link"></span></a>CentOS /RedHat / Fedora</h3>
 
-<div class="highlight"><pre><span class="c"># 请确保已经安装了gcc automake autoconf m4 </span>
+<div class="highlight highlight-bash"><pre><span class="c"># 请确保已经安装了gcc automake autoconf m4 </span>
 <span class="nv">$ </span>sudo yum install gd-devel pcre-devel libcurl-devel 
 </pre></div>
 
-<h3>FreeBSD / NetBSD / OpenBSD</h3>
+<h3>
+<a name="freebsd--netbsd--openbsd" class="anchor" href="#freebsd--netbsd--openbsd"><span class="octicon octicon-link"></span></a>FreeBSD / NetBSD / OpenBSD</h3>
 
 <pre><code># 不多说了，自己用port 把libcurl-dev libgd2-dev libpcre-dev 装上吧
 # 编译前请确保已经安装gcc automake autoconf m4 
 </code></pre>
 
-<h3>Windows</h3>
+<h3>
+<a name="windows" class="anchor" href="#windows"><span class="octicon octicon-link"></span></a>Windows</h3>
 
 <pre><code># 也支持的，不过要修改的代码太多了，包括Nginx本身，用VC++来编译
 # 嫌麻烦可以用cygwin来编译。还是不建议你这么做了，用Unix/Linux操作系统吧。
 </code></pre>
 
-<h3>下载nginx / tengine 源代码</h3>
+<h3>
+<a name="%E4%B8%8B%E8%BD%BDnginx--tengine-%E6%BA%90%E4%BB%A3%E7%A0%81" class="anchor" href="#%E4%B8%8B%E8%BD%BDnginx--tengine-%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="octicon octicon-link"></span></a>下载nginx / tengine 源代码</h3>
 
-<h4>然后下载本模块代码，并放在nginx源代码目录下</h4>
+<h4>
+<a name="%E7%84%B6%E5%90%8E%E4%B8%8B%E8%BD%BD%E6%9C%AC%E6%A8%A1%E5%9D%97%E4%BB%A3%E7%A0%81%E5%B9%B6%E6%94%BE%E5%9C%A8nginx%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95%E4%B8%8B" class="anchor" href="#%E7%84%B6%E5%90%8E%E4%B8%8B%E8%BD%BD%E6%9C%AC%E6%A8%A1%E5%9D%97%E4%BB%A3%E7%A0%81%E5%B9%B6%E6%94%BE%E5%9C%A8nginx%E6%BA%90%E4%BB%A3%E7%A0%81%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="octicon octicon-link"></span></a>然后下载本模块代码，并放在nginx源代码目录下</h4>
 
-<h4>选Nginx还是Tengine,您自己看,两者选其一</h4>
+<h4>
+<a name="%E9%80%89nginx%E8%BF%98%E6%98%AFtengine%E6%82%A8%E8%87%AA%E5%B7%B1%E7%9C%8B%E4%B8%A4%E8%80%85%E9%80%89%E5%85%B6%E4%B8%80" class="anchor" href="#%E9%80%89nginx%E8%BF%98%E6%98%AFtengine%E6%82%A8%E8%87%AA%E5%B7%B1%E7%9C%8B%E4%B8%A4%E8%80%85%E9%80%89%E5%85%B6%E4%B8%80"><span class="octicon octicon-link"></span></a>选Nginx还是Tengine,您自己看,两者选其一</h4>
 
-<div class="highlight"><pre><span class="c"># 下载Tengine</span>
+<div class="highlight highlight-bash"><pre><span class="c"># 下载Tengine</span>
 <span class="nv">$ </span>wget http://tengine.taobao.org/download/tengine-1.4.5.tar.gz
 <span class="nv">$ </span>tar -zxvf tengine-1.4.5.tar.gz
 <span class="nv">$ </span><span class="nb">cd </span>tengine-1.4.5
 </pre></div>
 
-<div class="highlight"><pre><span class="c"># 下载Nginx</span>
+<div class="highlight highlight-bash"><pre><span class="c"># 下载Nginx</span>
 <span class="nv">$ </span>wget http://nginx.org/download/nginx-1.4.0.tar.gz
 <span class="nv">$ </span>tar -zxvf nginx-1.4.0.tar.gz
 <span class="nv">$ </span><span class="nb">cd </span>nginx-1.4.0
 </pre></div>
 
-<div class="highlight"><pre><span class="nv">$ </span>wget https://github.com/3078825/nginx-image/archive/master.zip
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>wget https://github.com/3078825/nginx-image/archive/master.zip
 <span class="nv">$ </span>unzip master.zip
 <span class="nv">$ </span>./configure --add-module<span class="o">=</span>./nginx-image-master
 <span class="nv">$ </span>make
 <span class="nv">$ </span>sudo make install 
 </pre></div>
 
-<h2>配置方法</h2>
+<h2>
+<a name="%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95" class="anchor" href="#%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="octicon octicon-link"></span></a>配置方法</h2>
 
 <p>打开 <code>nginx.conf</code> </p>
 
-<div class="highlight"><pre>vim /etc/nginx/nginx.conf 
+<div class="highlight highlight-bash"><pre>vim /etc/nginx/nginx.conf 
 <span class="c"># 该路径为默认路径，如果不在此处，自己找一下</span>
 </pre></div>
 
 <p>在</p>
 
-<div class="highlight"><pre><span class="nb">location</span> / {
+<div class="highlight highlight-apache"><pre><span class="nb">location</span> / {
    <span class="nb">root</span> html;
    <span class="c">#添加以下配置</span>
    <span class="nb">image</span> <span class="k">on</span>;
@@ -122,16 +135,17 @@
 
 <p>或者指定目录开启 </p>
 
-<div class="highlight"><pre><span class="nb">location</span> <span class="sx">/upload</span> {
+<div class="highlight highlight-apache"><pre><span class="nb">location</span> <span class="sx">/upload</span> {
    <span class="nb">root</span> html; 
    <span class="nb">image</span> <span class="k">on</span>;
    <span class="nb">image_output</span> <span class="k">on</span>;
 <span class="err">}</span>
 </pre></div>
 
-<h2>其他参数说明：</h2>
+<h2>
+<a name="%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E" class="anchor" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="octicon octicon-link"></span></a>其他参数说明：</h2>
 
-<div class="highlight"><pre><span class="nb">image</span> <span class="k">on</span><span class="sx">/off</span> 是否开启缩略图功能,默认关闭
+<div class="highlight highlight-apache"><pre><span class="nb">image</span> <span class="k">on</span><span class="sx">/off</span> 是否开启缩略图功能,默认关闭
 
 <span class="nb">image_backend</span> <span class="k">on</span><span class="sx">/off</span> 是否开启镜像服务，当开启该功能时，请求目录不存在的图片（判断原图），将自动从镜像服务器地址下载原图
 
@@ -162,7 +176,8 @@
 <span class="nb">image_water_color</span> 水印文字颜色,默认 #000000
 </pre></div>
 
-<h2>调用说明</h2>
+<h2>
+<a name="%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E" class="anchor" href="#%E8%B0%83%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="octicon octicon-link"></span></a>调用说明</h2>
 
 <p>这里假设你的nginx 访问地址为 <code>http://127.0.0.1/</code></p>
 
@@ -174,7 +189,7 @@
 
 <p>其中 <strong>c</strong> 是生成图片缩略图的参数， <strong>300</strong> 是生成缩略图的 <strong>宽度</strong>      <strong>200</strong> 是生成缩略图的 <strong>高度</strong> </p>
 
-<p>一共可以生成**四**种不同类型的缩略图。</p>
+<p>一共可以生成<strong>四</strong>种不同类型的缩略图。</p>
 
 <p>支持 jpeg / png / gif (Gif生成后变成静态图片)</p>
 
@@ -186,7 +201,8 @@
 
 <p><strong>W</strong> 参数按请求宽高比例缩放/放大到指定尺寸，空白处填充白色背景颜色（ <strong>图片缩略图大小等于请求的宽高</strong> ）</p>
 
-<h2>调用举例</h2>
+<h2>
+<a name="%E8%B0%83%E7%94%A8%E4%B8%BE%E4%BE%8B" class="anchor" href="#%E8%B0%83%E7%94%A8%E4%B8%BE%E4%BE%8B"><span class="octicon octicon-link"></span></a>调用举例</h2>
 
 <ul>
 <li><p><a href="http://127.0.0.1/test.jpg!c300x300.jpg">http://127.0.0.1/test.jpg!c300x300.jpg</a></p></li>
@@ -200,11 +216,7 @@
 </ul>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/3078825">Vampire</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
